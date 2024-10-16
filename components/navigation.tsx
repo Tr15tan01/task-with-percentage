@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { auth, signOut } from "@/auth";
+import { logOut } from "@/actions/logout";
 
 // import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/icons";
@@ -16,13 +17,12 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-import { logOut } from "@/actions/logout";
 import { Button } from "./ui/button";
 
 export function NavigationMenuComponent() {
-  const logOut = async () => {
+  const signOut = async () => {
     // "use server";
-    await signOut();
+    await logOut();
   };
 
   return (
@@ -45,7 +45,7 @@ export function NavigationMenuComponent() {
         <NavigationMenuItem>
           <Link href="" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Button variant="secondary" onClick={logOut}>
+              <Button variant="secondary" onClick={signOut}>
                 logout
               </Button>
             </NavigationMenuLink>
