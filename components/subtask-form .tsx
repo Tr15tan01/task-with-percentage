@@ -27,7 +27,14 @@ import { FormSuccess } from "./form-success";
 import { redirect } from "next/navigation";
 import { addSubTask } from "@/actions/addsubtask";
 
-export function SubTaskForm({ task }) {
+interface TaskProps {
+  id: string;
+  title: string;
+  description: string;
+  task: string;
+}
+
+export function SubTaskForm({ task }: TaskProps) {
   const user = useCurrentUser();
   // console.log(user);
 
@@ -57,7 +64,7 @@ export function SubTaskForm({ task }) {
         console.log(data?.error, "is error");
         // revalidateTasks();
         setError(data?.error);
-        setSuccess(data?.success);
+        setSuccess("success");
       });
       redirect("/card");
     });
