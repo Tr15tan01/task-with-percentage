@@ -1,9 +1,7 @@
 "use client";
 
 import { DialogComponent } from "@/components/dialog";
-import { NavigationMenuComponent } from "@/components/navigation";
 import { TasksComponent } from "@/components/tasks";
-import { ModeToggle } from "@/components/theme-toggle";
 import { getTasksByUser } from "@/actions/fetchtasks";
 // import { TaskSchema } from "@/schemas";
 import { useEffect, useState } from "react";

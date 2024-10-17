@@ -6,7 +6,6 @@ import { auth } from "@/auth";
 import { ThemeProvider } from "./theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { NavigationMenuComponent } from "@/components/navigation";
-import { ModeToggle } from "@/components/theme-toggle";
 import { SiteFooter } from "@/components/footer";
 
 const geistSans = localFont({
@@ -35,7 +34,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center w-full`}
         >
           <ThemeProvider
             attribute="class"
