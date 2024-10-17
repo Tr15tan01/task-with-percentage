@@ -31,7 +31,7 @@ const CardPage = () => {
     };
 
     fetchTasks();
-  }, []);
+  }, [user?.id]);
 
   return (
     <>

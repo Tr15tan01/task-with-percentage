@@ -1,6 +1,6 @@
 const AboutPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center p-5 h-full w-[80%]">
+    <div className="flex flex-col items-center justify-center p-6 h-full w-[100%]">
       <h2 className="text-4xl m-9">About Task Manager</h2>
       <p className="text-md">
         The evolution of task managers reflects the ongoing development of
