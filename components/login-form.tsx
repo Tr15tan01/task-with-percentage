@@ -41,7 +41,7 @@ const LoginForm = () => {
       login(values).then((data) => {
         console.log("data", data);
         setError(data?.error);
-        setSuccess(data?.success);
+        setSuccess("success");
       });
     });
   };
