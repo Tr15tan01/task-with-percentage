@@ -1,10 +1,10 @@
 "use client";
 
-import { useCurrentUser } from "@/hooks/use-current-user";
+// import { useCurrentUser } from "@/hooks/use-current-user";
 import { signOut } from "next-auth/react";
 
 const ProfilePage = () => {
-  const user = useCurrentUser();
+  // const user = useCurrentUser();
   const onClick = () => signOut();
   return (
     <div className="bg-white text-gray-600">

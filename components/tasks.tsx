@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,14 +10,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { deleteTaskById } from "@/actions/deletetask";
-import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
+// import { redirect } from "next/navigation";
+// import { useRouter } from "next/navigation";
 // import { CheckboxForm } from "./subtask-component";
 import { SubtaskDialogComponent } from "./subtask-dialog";
 import { SubTaskComponent } from "./subtask-component";
 import { getSubTasksByTask } from "@/actions/fetchsubtasks";
 import { useEffect, useState } from "react";
-import { SubTaskSchema } from "@/schemas";
+// import { SubTaskSchema } from "@/schemas";
 import { SkeletonSmall } from "./skeleton-sm";
 // import { Router } from "next/router";
 // import { getTasksByUser } from "@/data/fetchtasks";

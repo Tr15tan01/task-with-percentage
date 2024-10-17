@@ -7,6 +7,7 @@ import { ThemeProvider } from "./theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { NavigationMenuComponent } from "@/components/navigation";
 import { ModeToggle } from "@/components/theme-toggle";
+import { SiteFooter } from "@/components/footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,9 +45,10 @@ export default async function RootLayout({
           >
             <div className="w-full flex justify-between">
               <NavigationMenuComponent />
-              <ModeToggle />
+              {/* <ModeToggle /> */}
             </div>
             {children}
+            <SiteFooter />
           </ThemeProvider>
           <Toaster />
         </body>

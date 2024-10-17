@@ -1,26 +1,26 @@
 "use client";
 
-import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+// import Link from "next/link";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { useForm } from "react-hook-form";
+// import { z } from "zod";
 
-import { toast } from "@/hooks/use-toast";
+// import { toast } from "@/hooks/use-toast";
 // import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
+// import { Checkbox } from "@/components/ui/checkbox";
+// import {
+//   Form,
+//   FormControl,
+//   FormDescription,
+//   FormField,
+//   FormItem,
+//   FormLabel,
+// } from "@/components/ui/form";
 import { useState } from "react";
 
-const FormSchema = z.object({
-  mobile: z.boolean().default(false).optional(),
-});
+// const FormSchema = z.object({
+//   mobile: z.boolean().default(false).optional(),
+// });
 
 interface SubTaskProps {
   subtitle: string;
@@ -31,25 +31,25 @@ interface SubTaskProps {
 export function SubTaskComponent({
   subtitle,
   description,
-  completed,
-}: SubTaskProps) {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      mobile: true,
-    },
-  });
+}: // completed,
+SubTaskProps) {
+  // const form = useForm<z.infer<typeof FormSchema>>({
+  //   resolver: zodResolver(FormSchema),
+  //   defaultValues: {
+  //     mobile: true,
+  //   },
+  // });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  // function onSubmit(data: z.infer<typeof FormSchema>) {
+  //   toast({
+  //     title: "You submitted the following values:",
+  //     description: (
+  //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+  //         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+  //       </pre>
+  //     ),
+  //   });
+  // }
 
   const [checked, setChecked] = useState(true);
 

@@ -13,10 +13,16 @@ import {
 // import { Input } from "@/components/ui/input";
 // import { Label } from "@/components/ui/label";
 // import { InputForm } from "./input-form";
-import { SubtaskInputForm } from "./subtask-form";
+// import { SubtaskInputForm } from "./subtask-form";
 import { SubTaskForm } from "./subtask-form ";
 
-export function SubtaskDialogComponent({ task }) {
+interface TaskProps {
+  title: string;
+  description: string;
+  task: string;
+}
+
+export function SubtaskDialogComponent({ task }: TaskProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>

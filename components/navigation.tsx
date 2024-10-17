@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { auth, signOut } from "@/auth";
+// import { auth, signOut } from "@/auth";
 import { logOut } from "@/actions/logout";
+import { useRouter } from "next/navigation";
 
 // import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/icons";
@@ -18,41 +19,57 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { Button } from "./ui/button";
+import { ModeToggle } from "./theme-toggle";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 export function NavigationMenuComponent() {
+  const user = useCurrentUser();
+  const router = useRouter();
   const signOut = async () => {
-    // "use server";
     await logOut();
   };
 
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Home
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/card" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Card
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Button variant="secondary" onClick={signOut}>
-                logout
-              </Button>
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="m-4 rounded flex w-full justify-between shadow-md">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <Link href="/" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Home
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/card" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                My Tasks
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/about" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                About
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+      <div className="flex float-end">
+        {user ? (
+          <Button variant="secondary" onClick={signOut}>
+            Logout
+          </Button>
+        ) : (
+          <Button variant="secondary" onClick={() => router.push("/login")}>
+            Login
+          </Button>
+        )}
+
+        <ModeToggle />
+      </div>
+    </div>
   );
 }
 
