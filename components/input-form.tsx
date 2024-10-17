@@ -54,7 +54,7 @@ export function InputForm() {
         console.log(data?.error, "is error");
         // revalidateTasks();
         setError(data?.error);
-        setSuccess(data?.success);
+        setSuccess("success");
       });
       redirect("/card");
     });
