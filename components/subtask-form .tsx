@@ -27,14 +27,7 @@ import { FormSuccess } from "./form-success";
 import { redirect } from "next/navigation";
 import { addSubTask } from "@/actions/addsubtask";
 
-interface TaskProps {
-  id: string;
-  title: string;
-  description: string;
-  task: string;
-}
-
-export function SubTaskForm({ task }: TaskProps) {
+export function SubTaskForm({ taskId }: { taskId: string }) {
   const user = useCurrentUser();
   // console.log(user);
 
@@ -48,7 +41,7 @@ export function SubTaskForm({ task }: TaskProps) {
       subtitle: "",
       description: "",
       userId: user?.id,
-      taskId: task.id,
+      taskId: taskId,
       completed: false,
     },
   });
@@ -69,6 +62,11 @@ export function SubTaskForm({ task }: TaskProps) {
       redirect("/card");
     });
   };
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Form {...form}>
       <form

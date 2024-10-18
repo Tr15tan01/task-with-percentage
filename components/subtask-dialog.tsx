@@ -17,9 +17,14 @@ import {
 import { SubTaskForm } from "./subtask-form ";
 
 interface TaskProps {
+  id: string;
   title: string;
   description: string;
-  task: string;
+  task: {
+    id: string;
+    title: string;
+    description: string;
+  };
 }
 
 export function SubtaskDialogComponent({ task }: TaskProps) {
