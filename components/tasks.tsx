@@ -33,10 +33,15 @@ interface TaskProps {
 }
 
 interface SubTaskProps {
+  id: string;
+  userId: string;
+  taskId: string;
   subtitle: string;
   description: string;
+  createdAt: Date;
   completed: boolean;
 }
+[];
 
 // const subTasks = [
 //   { subtitle: "subtitle one", descrition: "descrition one" },
@@ -46,7 +51,9 @@ interface SubTaskProps {
 // type CardProps = React.ComponentProps<typeof Card>;
 
 export function TasksComponent(task: TaskProps) {
-  const [subtasks, setSubTasks] = useState<SubTaskProps[]>();
+  // const [subtasks, setSubTasks] = useState<SubTaskProps[]>([]);
+  const [subtasks, setSubTasks] = useState<SubTaskProps[] | null>(null);
+
   const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
