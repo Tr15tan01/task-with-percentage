@@ -11,8 +11,8 @@ export const deleteTaskById = async (id: string) => {
         where: {
           id,
         },
-      },
-      revalidatePath("/card")
+      }
+      // revalidatePath("/", "page")
     );
   } catch (error) {
     console.log(error, "fetch tasks error");
