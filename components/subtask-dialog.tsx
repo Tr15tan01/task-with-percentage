@@ -16,18 +16,13 @@ import {
 // import { SubtaskInputForm } from "./subtask-form";
 import { SubTaskForm } from "./subtask-form ";
 
-interface TaskProps {
-  id: string;
-  title: string;
-  description: string;
-  task: {
-    id: string;
-    title: string;
-    description: string;
-  };
-}
+// interface TaskProps {
+//   id: string;
+//   title: string;
+//   description: string;
+// }
 
-export function SubtaskDialogComponent({ task }: TaskProps) {
+export function SubtaskDialogComponent({ taskId }: { taskId: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -42,7 +37,7 @@ export function SubtaskDialogComponent({ task }: TaskProps) {
             Make changes to Tasks here. Click save when you are sure.
           </DialogDescription>
         </DialogHeader>
-        <SubTaskForm task={task} />
+        <SubTaskForm taskId={taskId} />
         <DialogFooter>
           <Button type="submit">Save changes</Button>
         </DialogFooter>

@@ -104,7 +104,7 @@ export function TasksComponent(task: TaskProps) {
                   subtitle={subtask.subtitle}
                   description={subtask.description}
                   completed={subtask.completed}
-                  task={task}
+                  // taskId={task.id}
                 />
               );
             })
@@ -121,7 +121,7 @@ export function TasksComponent(task: TaskProps) {
           {/* <CheckIcon className="mr-2 h-4 w-4" />  */}
           Add Subtask
         </Button>
-        <SubtaskDialogComponent task={task} />
+        <SubtaskDialogComponent taskId={task.id} />
       </CardFooter>
     </Card>
   );
