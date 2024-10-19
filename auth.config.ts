@@ -1,4 +1,3 @@
-// import GitHub from "next-auth/providers/github"
 import type { NextAuthConfig } from "next-auth";
 import bcrypt from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";
@@ -7,7 +6,6 @@ import Google from "next-auth/providers/google";
 import { LoginSchema } from "./schemas";
 import { getUserByEmail } from "./data/users";
 
-console.log("auth", process.env.GOOGLE_CLIENT_ID);
 export default {
   providers: [
     Google({
@@ -20,15 +18,25 @@ export default {
     }),
     Credentials({
       async authorize(credentials) {
-        const validatedFirlds = LoginSchema.safeParse(credentials);
-        if (validatedFirlds.success) {
-          const { email, password } = validatedFirlds.data;
-          const user = await getUserByEmail(email);
-          if (!user || !password) return null;
+        // Validate the fields using your schema
+        const validatedFields = LoginSchema.safeParse(credentials);
+        if (validatedFields.success) {
+          const { email, password } = validatedFields.data;
 
+          // Get the user by email
+          const user = await getUserByEmail(email);
+
+          // Check if the user or password is null or undefined
+          if (!user || !password || !user.password) return null;
+
+          // Ensure user.password is a string before comparing
           const passwordsMatch = await bcrypt.compare(password, user.password);
+
+          // If the passwords match, return the user
           if (passwordsMatch) return user;
         }
+
+        // If validation fails or passwords don't match, return null
         return null;
       },
     }),

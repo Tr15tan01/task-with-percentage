@@ -19,18 +19,32 @@ const CardPage = () => {
   const user = useCurrentUser();
   console.log(user);
   const [loading, setLoading] = useState(true);
-  const [tasks, setTasks] = useState<TaskProps[]>([]);
+  // const [tasks, setTasks] = useState<TaskProps[] | null>(null);
+  const [tasks, setTasks] = useState<TaskProps[] | null>(null);
 
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     const tasks = await getTasksByUser(user?.id);
+  //     setTasks(tasks);
+  //     setLoading(false);
+  //     // console.log(tasks, "tasks");
+  //     return tasks;
+  //   };
+
+  //   fetchTasks();
+  // }, [user?.id]);
   useEffect(() => {
     const fetchTasks = async () => {
       const tasks = await getTasksByUser(user?.id);
-      setTasks(tasks);
+
+      // If `tasks` is undefined, set it to `null` or an empty array.
+      setTasks(tasks ?? null); // or setTasks(tasks ?? []);
       setLoading(false);
-      // console.log(tasks, "tasks");
-      return tasks;
     };
 
-    fetchTasks();
+    if (user?.id) {
+      fetchTasks();
+    }
   }, [user?.id]);
 
   return (

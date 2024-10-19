@@ -17,7 +17,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       // console.log("user", user);
       await db.user.update({
         where: { id: user.id },
-        data: { emailVerfied: new Date() },
+        // data: { emailVerfied: new Date() },
+        data: { emailVerified: new Date() },
       });
     },
   },
