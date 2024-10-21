@@ -36,7 +36,6 @@ const CardPage = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       const tasks = await getTasksByUser(user?.id);
-
       // If `tasks` is undefined, set it to `null` or an empty array.
       setTasks(tasks ?? null); // or setTasks(tasks ?? []);
       setLoading(false);
@@ -47,6 +46,14 @@ const CardPage = () => {
     }
   }, [user?.id]);
 
+  if (loading) {
+    return (
+      <>
+        <SkeletonBig /> <SkeletonBig />
+      </>
+    );
+  }
+
   return (
     <>
       {/* <div className="w-full flex justify-between">
@@ -55,11 +62,11 @@ const CardPage = () => {
       </div> */}
       <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 dark:bg-stone-900 gap-3">
         <h1>All tasks Are Here</h1>
-        {loading && (
+        {/* {loading && (
           <>
             <SkeletonBig /> <SkeletonBig />
           </>
-        )}
+        )} */}
         {tasks?.map((task) => {
           return (
             <TasksComponent

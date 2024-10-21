@@ -62,7 +62,10 @@ export function NavigationMenuComponent() {
             Logout
           </Button>
         ) : (
-          <Button variant="secondary" onClick={() => router.push("/login")}>
+          <Button
+            variant="secondary"
+            onClick={() => router.push("/auth/login")}
+          >
             Login
           </Button>
         )}
