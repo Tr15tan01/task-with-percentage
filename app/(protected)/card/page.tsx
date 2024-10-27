@@ -7,6 +7,7 @@ import { getTasksByUser } from "@/actions/fetchtasks";
 import { useEffect, useState } from "react";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { SkeletonBig } from "@/components/skeleton-big";
+// import { useSession } from "next-auth/react";
 
 interface TaskProps {
   id: string;
@@ -17,34 +18,38 @@ interface TaskProps {
 
 const CardPage = () => {
   const user = useCurrentUser();
-  console.log(user);
-  const [loading, setLoading] = useState(true);
+  // const session = useSession();
+  // const user = session.data?.user;
+  console.log("user is - ", user);
+  const [loading, setLoading] = useState(false);
   // const [tasks, setTasks] = useState<TaskProps[] | null>(null);
+  console.log("loading is ", loading);
   const [tasks, setTasks] = useState<TaskProps[] | null>(null);
 
-  // useEffect(() => {
-  //   const fetchTasks = async () => {
-  //     const tasks = await getTasksByUser(user?.id);
-  //     setTasks(tasks);
-  //     setLoading(false);
-  //     // console.log(tasks, "tasks");
-  //     return tasks;
-  //   };
-
-  //   fetchTasks();
-  // }, [user?.id]);
   useEffect(() => {
+    // Ensure that fetchTasks only runs when the user is defined
+    console.log("user id from Effect is - ", user?.id);
+    if (!user?.id) return;
+    console.log("user id from Effect is - ", user.id);
+
     const fetchTasks = async () => {
-      const tasks = await getTasksByUser(user?.id);
-      // If `tasks` is undefined, set it to `null` or an empty array.
-      setTasks(tasks ?? null); // or setTasks(tasks ?? []);
-      setLoading(false);
+      setLoading(true); // Start loading
+      try {
+        const tasks = await getTasksByUser(user.id); // Fetch tasks for the user
+        setTasks(tasks ?? []); // Set tasks or empty array if null
+      } catch (error) {
+        console.error("Failed to fetch tasks:", error);
+      } finally {
+        setLoading(false); // Always stop loading
+      }
     };
 
-    if (user?.id) {
-      fetchTasks();
-    }
-  }, [user?.id]);
+    fetchTasks();
+  }, [user?.id]); // Depend on user ID
+
+  if (!user) {
+    return <SkeletonBig />; // Or any other loading component
+  }
 
   if (loading) {
     return (
